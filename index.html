@@ -4,335 +4,582 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Negi Bhojnalaya – Feedback</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --saffron: #FF6B1A;
-    --deep: #1A0A00;
-    --cream: #FFF8F0;
-    --gold: #F5A623;
-    --green: #2ECC71;
-    --red: #E74C3C;
-    --card: rgba(255,255,255,0.07);
-    --border: rgba(255,107,26,0.25);
-  }
+:root {
+  --clay: #C8490A;
+  --clay-light: #E85D1A;
+  --clay-dark: #8C3008;
+  --haldi: #E8A320;
+  --haldi-light: #F5C842;
+  --leaf: #3A7D44;
+  --leaf-light: #4CAF60;
+  --cream: #FDF6EC;
+  --cream-dark: #F5E6D0;
+  --brown: #2C1204;
+  --brown-mid: #5C2D0E;
+  --milk: #FFF9F2;
+  --border: rgba(200,73,10,0.2);
+  --shadow: rgba(44,18,4,0.15);
+}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--deep);
-    color: var(--cream);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+body {
+  font-family: 'Baloo 2', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  /* ── BACKGROUND TEXTURE ── */
-  body::before {
-    content:'';
-    position:fixed; inset:0;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(255,107,26,.18) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 90%, rgba(245,166,35,.12) 0%, transparent 60%);
-    pointer-events:none; z-index:0;
-  }
+/* ── BACKGROUND PATTERN ── */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(200,73,10,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(232,163,32,0.08) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8490A' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none; z-index:0;
+}
 
-  /* ─────────────────────────────── HERO HEADER */
-  .hero {
-    position:relative; z-index:1;
-    text-align:center;
-    padding: 48px 24px 32px;
-    border-bottom: 1px solid var(--border);
-  }
-  .logo-icon { font-size:3.5rem; display:block; margin-bottom:8px; }
-  .hero h1 {
-    font-family:'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    font-weight:900;
-    background: linear-gradient(135deg, var(--gold), var(--saffron));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    line-height:1.1;
-  }
-  .hero p { margin-top:6px; font-size:.9rem; opacity:.6; letter-spacing:.06em; }
-  .upi-badge {
-    display:inline-block; margin-top:14px;
-    padding:6px 18px; border-radius:50px;
-    background: rgba(255,107,26,.15);
-    border: 1px solid var(--border);
-    font-size:.78rem; opacity:.8;
-  }
+/* ── DIYA DECORATION ── */
+.diya-strip {
+  position:relative; z-index:1;
+  background: linear-gradient(135deg, var(--clay-dark) 0%, var(--clay) 50%, var(--clay-light) 100%);
+  padding: 6px 0;
+  text-align:center;
+  font-size: 1.1rem;
+  letter-spacing: 8px;
+  overflow:hidden;
+}
+.diya-strip::before {
+  content:'';
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 20px,
+    rgba(255,255,255,0.06) 20px,
+    rgba(255,255,255,0.06) 40px
+  );
+}
 
-  /* ─────────────────────────────── TABS */
-  .tabs {
-    position:relative; z-index:1;
-    display:flex; justify-content:center; gap:8px;
-    padding:20px 24px 0;
-  }
-  .tab {
-    padding:10px 28px; border-radius:50px;
-    border:1px solid var(--border);
-    background:transparent; color:var(--cream);
-    font-family:'Poppins',sans-serif; font-size:.85rem; cursor:pointer;
-    transition: all .3s;
-  }
-  .tab.active {
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    border-color:transparent; color:#fff; font-weight:600;
-    box-shadow: 0 4px 20px rgba(255,107,26,.4);
-  }
+/* ── HERO HEADER ── */
+.hero {
+  position:relative; z-index:1;
+  text-align:center;
+  padding: 36px 24px 28px;
+  background: linear-gradient(180deg, var(--milk) 0%, var(--cream) 100%);
+  border-bottom: 2px solid var(--cream-dark);
+  overflow:hidden;
+}
 
-  /* ─────────────────────────────── PANELS */
-  .panel { display:none; }
-  .panel.active { display:block; }
+.hero::before, .hero::after {
+  content:'';
+  position:absolute;
+  width:120px; height:120px;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(200,73,10,0.08), transparent 70%);
+}
+.hero::before { top:-40px; left:-20px; }
+.hero::after  { bottom:-40px; right:-20px; }
 
-  /* ─────────────────────────────── FEEDBACK FORM */
-  .form-wrap {
-    position:relative; z-index:1;
-    max-width:520px; margin:0 auto;
-    padding:32px 24px 60px;
-  }
+.thali-icon {
+  font-size: 3.8rem;
+  display:block;
+  margin-bottom:4px;
+  animation: floatUp 3s ease-in-out infinite;
+}
+@keyframes floatUp {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-6px); }
+}
 
-  .section-title {
-    font-size:.72rem; letter-spacing:.15em; text-transform:uppercase;
-    color:var(--gold); opacity:.8; margin-bottom:20px;
-  }
+.hero h1 {
+  font-family: 'Rozha One', serif;
+  font-size: clamp(2rem, 7vw, 3rem);
+  color: var(--clay-dark);
+  line-height: 1.1;
+  text-shadow: 0 2px 0 rgba(200,73,10,0.15);
+}
 
-  /* Star Rating */
-  .rating-block { margin-bottom:32px; }
-  .stars {
-    display:flex; gap:10px; justify-content:center;
-    margin-top:16px;
-  }
-  .star {
-    font-size:3rem; cursor:pointer;
-    filter: grayscale(1) brightness(.5);
-    transition: all .2s; user-select:none;
-  }
-  .star.lit { filter:none; transform:scale(1.15); }
-  .star:hover { filter:none; transform:scale(1.2); }
+.hero-sub {
+  margin-top:6px;
+  font-size:.85rem;
+  color:var(--brown-mid);
+  opacity:.7;
+  font-weight:500;
+  letter-spacing:.05em;
+}
 
-  .rating-label {
-    text-align:center; margin-top:12px;
-    font-size:.9rem; font-weight:600; color:var(--gold);
-    min-height:1.4em;
-  }
+.upi-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:14px;
+  padding: 7px 20px;
+  background: var(--cream-dark);
+  border: 1.5px dashed rgba(200,73,10,0.35);
+  border-radius: 50px;
+  font-size:.78rem;
+  color:var(--brown-mid);
+  font-weight:600;
+}
 
-  /* Text fields */
-  .field { margin-bottom:20px; }
-  .field label { display:block; font-size:.78rem; opacity:.6; margin-bottom:8px; }
-  .field textarea, .field input {
-    width:100%; padding:14px 16px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius:12px; color:var(--cream);
-    font-family:'Poppins',sans-serif; font-size:.9rem;
-    outline:none; resize:none;
-    transition: border-color .3s;
-  }
-  .field textarea:focus, .field input:focus {
-    border-color: var(--saffron);
-    box-shadow: 0 0 0 3px rgba(255,107,26,.15);
-  }
-  .field textarea { height:100px; }
+/* ── MANDALA DIVIDER ── */
+.divider {
+  position:relative; z-index:1;
+  text-align:center;
+  padding: 8px 0;
+  overflow:hidden;
+}
+.divider::before, .divider::after {
+  content:'';
+  position:absolute;
+  top:50%; width:35%;
+  height:1.5px;
+  background: linear-gradient(90deg, transparent, var(--border));
+}
+.divider::before { left:0; }
+.divider::after  { right:0; background:linear-gradient(270deg, transparent, var(--border)); }
+.divider span { font-size:1.2rem; }
 
-  /* Submit button */
-  .btn-submit {
-    width:100%; padding:16px;
-    border:none; border-radius:14px; cursor:pointer;
-    font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color:#fff; letter-spacing:.04em;
-    box-shadow: 0 8px 30px rgba(255,107,26,.45);
-    transition: transform .2s, box-shadow .2s;
-  }
-  .btn-submit:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(255,107,26,.55); }
-  .btn-submit:active { transform:translateY(0); }
-  .btn-submit:disabled { opacity:.5; cursor:not-allowed; }
+/* ── TABS ── */
+.tabs {
+  position:relative; z-index:1;
+  display:flex; justify-content:center; gap:0;
+  padding: 20px 24px 0;
+}
+.tab {
+  padding: 11px 30px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--brown-mid);
+  font-family:'Baloo 2',sans-serif; font-size:.88rem; font-weight:500;
+  cursor:pointer;
+  transition: all .25s;
+}
+.tab:first-child { border-radius: 10px 0 0 10px; }
+.tab:last-child  { border-radius: 0 10px 10px 0; border-left:none; }
+.tab.active {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: #fff;
+  font-weight:700;
+  box-shadow: 0 4px 16px rgba(200,73,10,0.3);
+}
 
-  /* Toast */
-  .toast {
-    position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(100px);
-    padding:14px 28px; border-radius:50px;
-    background:var(--green); color:#fff; font-size:.88rem; font-weight:600;
-    box-shadow:0 8px 30px rgba(0,0,0,.4); z-index:999;
-    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
-    white-space:nowrap;
-  }
-  .toast.show { transform:translateX(-50%) translateY(0); }
+/* ── PANELS ── */
+.panel { display:none; }
+.panel.active { display:block; }
 
-  /* ─────────────────────────────── DASHBOARD */
-  .dash-wrap {
-    position:relative; z-index:1;
-    max-width:700px; margin:0 auto;
-    padding:32px 24px 60px;
-  }
+/* ════════════════════ FEEDBACK FORM */
+.form-wrap {
+  position:relative; z-index:1;
+  max-width:500px; margin:0 auto;
+  padding: 32px 20px 60px;
+}
 
-  .stats-grid {
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-    gap:16px; margin-bottom:32px;
-  }
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius:16px; padding:20px 16px;
-    text-align:center;
-    backdrop-filter:blur(10px);
-  }
-  .stat-card .num {
-    font-family:'Playfair Display',serif;
-    font-size:2.2rem; font-weight:900;
-    background:linear-gradient(135deg,var(--gold),var(--saffron));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  }
-  .stat-card .lbl { font-size:.72rem; opacity:.5; margin-top:4px; letter-spacing:.05em; text-transform:uppercase; }
+.card {
+  background: var(--milk);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 24px var(--shadow);
+  margin-bottom:20px;
+}
 
-  /* Bar chart */
-  .bar-section { margin-bottom:32px; }
-  .bar-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
-  .bar-row .star-lbl { font-size:.85rem; width:60px; }
-  .bar-bg { flex:1; height:12px; background:rgba(255,255,255,.08); border-radius:6px; overflow:hidden; }
-  .bar-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,var(--saffron),var(--gold)); transition:width 1s ease; }
-  .bar-count { font-size:.78rem; opacity:.5; width:24px; text-align:right; }
+.card-title {
+  font-family:'Rozha One',serif;
+  font-size:1.1rem;
+  color:var(--clay-dark);
+  margin-bottom:4px;
+}
+.card-sub {
+  font-size:.76rem;
+  color:var(--brown-mid);
+  opacity:.6;
+  margin-bottom:20px;
+}
 
-  /* Feed list */
-  .feed-list { display:flex; flex-direction:column; gap:14px; }
-  .feed-item {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:14px; padding:16px;
-    animation: fadeIn .5s ease;
-  }
-  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-  .feed-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
-  .feed-stars { font-size:1rem; }
-  .feed-time { font-size:.72rem; opacity:.4; }
-  .feed-desc { font-size:.84rem; opacity:.75; line-height:1.5; }
-  .feed-name { font-size:.78rem; opacity:.45; margin-top:6px; }
+/* Star Rating */
+.stars {
+  display:flex; gap:8px; justify-content:center;
+  margin:4px 0 12px;
+}
+.star {
+  font-size:2.8rem; cursor:pointer;
+  filter: grayscale(1) brightness(.6);
+  transition: all .2s; user-select:none;
+  line-height:1;
+}
+.star.lit { filter:none; transform:scale(1.18) rotate(-5deg); }
+.star:hover { filter:none; transform:scale(1.22); }
 
-  .empty-msg { text-align:center; opacity:.35; padding:40px 0; font-size:.9rem; }
+.rating-label {
+  text-align:center;
+  font-size:.88rem; font-weight:600;
+  color:var(--clay);
+  min-height:1.5em;
+  margin-top:4px;
+}
 
-  .live-dot {
-    display:inline-block; width:8px; height:8px;
-    background:var(--green); border-radius:50%;
-    margin-right:6px;
-    animation: pulse 1.5s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+/* Fields */
+.field { margin-bottom:16px; }
+.field label {
+  display:block;
+  font-size:.78rem; font-weight:600;
+  color:var(--brown-mid); opacity:.7;
+  margin-bottom:8px;
+  text-transform:uppercase; letter-spacing:.06em;
+}
+.field textarea,
+.field input[type=text] {
+  width:100%; padding:14px 16px;
+  background: var(--cream);
+  border: 1.5px solid var(--cream-dark);
+  border-radius:12px;
+  color:var(--brown);
+  font-family:'Baloo 2',sans-serif; font-size:.9rem;
+  outline:none; resize:none;
+  transition: border-color .25s, box-shadow .25s;
+}
+.field textarea:focus,
+.field input[type=text]:focus {
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(200,73,10,0.1);
+}
+.field textarea { height:96px; }
+.field input::placeholder,
+.field textarea::placeholder { color:var(--brown-mid); opacity:.4; }
 
-  .refresh-btn {
-    float:right; background:none; border:1px solid var(--border);
-    color:var(--cream); border-radius:8px; padding:6px 14px;
-    font-size:.75rem; cursor:pointer; opacity:.6;
-    transition:opacity .2s;
-  }
-  .refresh-btn:hover { opacity:1; }
+/* Chips */
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+.chip {
+  padding: 6px 14px;
+  border-radius:50px;
+  border: 1.5px solid var(--cream-dark);
+  background: var(--cream);
+  font-size:.8rem; font-weight:500; color:var(--brown-mid);
+  cursor:pointer; transition:all .2s;
+}
+.chip:hover { border-color:var(--clay); color:var(--clay); }
+.chip.active {
+  background: var(--clay); border-color:var(--clay);
+  color:#fff;
+}
+
+/* Submit */
+.btn-submit {
+  width:100%; padding:17px;
+  border:none; border-radius:14px; cursor:pointer;
+  font-family:'Rozha One',serif; font-size:1.15rem;
+  background: linear-gradient(135deg, var(--clay-dark) 0%, var(--clay) 50%, var(--clay-light) 100%);
+  color:#fff; letter-spacing:.04em;
+  box-shadow: 0 6px 24px rgba(200,73,10,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: transform .2s, box-shadow .2s;
+  position:relative; overflow:hidden;
+}
+.btn-submit::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), transparent);
+  border-radius:14px;
+}
+.btn-submit:hover:not(:disabled) {
+  transform:translateY(-2px);
+  box-shadow:0 10px 32px rgba(200,73,10,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-submit:active:not(:disabled) { transform:translateY(0); }
+.btn-submit:disabled { opacity:.55; cursor:not-allowed; }
+
+/* Already submitted state */
+.already-done {
+  text-align:center;
+  padding: 40px 20px;
+}
+.already-done .big-icon { font-size:3.5rem; display:block; margin-bottom:12px; }
+.already-done h3 {
+  font-family:'Rozha One',serif;
+  font-size:1.4rem; color:var(--clay-dark);
+  margin-bottom:8px;
+}
+.already-done p { font-size:.88rem; color:var(--brown-mid); opacity:.7; line-height:1.6; }
+
+/* Toast */
+.toast {
+  position:fixed; bottom:32px; left:50%;
+  transform:translateX(-50%) translateY(120px);
+  padding:14px 28px; border-radius:50px;
+  background: linear-gradient(135deg, var(--leaf) 0%, var(--leaf-light) 100%);
+  color:#fff; font-size:.88rem; font-weight:700;
+  box-shadow:0 8px 30px rgba(0,0,0,.2); z-index:999;
+  transition: transform .45s cubic-bezier(.34,1.56,.64,1);
+  white-space:nowrap;
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+/* ════════════════════ DASHBOARD */
+.dash-wrap {
+  position:relative; z-index:1;
+  max-width:680px; margin:0 auto;
+  padding:32px 20px 60px;
+}
+
+.stats-grid {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px; margin-bottom:24px;
+}
+.stat-card {
+  background: var(--milk);
+  border: 1.5px solid var(--cream-dark);
+  border-radius:16px; padding:20px 12px;
+  text-align:center;
+  box-shadow:0 2px 12px var(--shadow);
+}
+.stat-card .num {
+  font-family:'Rozha One',serif;
+  font-size:2rem; color:var(--clay);
+  line-height:1;
+}
+.stat-card .lbl {
+  font-size:.68rem; color:var(--brown-mid); opacity:.55;
+  margin-top:5px; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase;
+}
+
+/* Bar chart */
+.bar-section { margin-bottom:28px; }
+.bar-section .section-title {
+  font-family:'Rozha One',serif;
+  font-size:.95rem; color:var(--clay-dark);
+  margin-bottom:14px;
+}
+.bar-row { display:flex; align-items:center; gap:10px; margin-bottom:9px; }
+.bar-lbl { font-size:.82rem; font-weight:600; color:var(--brown-mid); width:64px; }
+.bar-bg {
+  flex:1; height:10px;
+  background:var(--cream-dark); border-radius:10px; overflow:hidden;
+}
+.bar-fill {
+  height:100%; border-radius:10px;
+  background:linear-gradient(90deg, var(--clay-dark), var(--haldi));
+  transition:width 1s ease;
+}
+.bar-count { font-size:.75rem; color:var(--brown-mid); opacity:.5; width:20px; text-align:right; }
+
+/* Feed */
+.section-title-2 {
+  font-family:'Rozha One',serif;
+  font-size:.95rem; color:var(--clay-dark);
+  margin-bottom:14px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.refresh-btn {
+  background:none; border:1.5px solid var(--border);
+  color:var(--brown-mid); border-radius:8px; padding:5px 12px;
+  font-size:.72rem; font-family:'Baloo 2',sans-serif; font-weight:600;
+  cursor:pointer; opacity:.7;
+  transition:opacity .2s;
+}
+.refresh-btn:hover { opacity:1; }
+
+.feed-list { display:flex; flex-direction:column; gap:12px; }
+.feed-item {
+  background:var(--milk);
+  border:1.5px solid var(--cream-dark);
+  border-radius:14px; padding:16px;
+  box-shadow:0 2px 8px var(--shadow);
+  animation: fadeUp .4s ease;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.feed-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.feed-stars { font-size:.9rem; }
+.feed-time { font-size:.7rem; color:var(--brown-mid); opacity:.45; }
+.feed-chip {
+  display:inline-block; margin-bottom:8px;
+  padding:3px 12px; border-radius:50px;
+  background:var(--cream-dark);
+  font-size:.72rem; font-weight:600; color:var(--clay-dark);
+}
+.feed-desc { font-size:.84rem; color:var(--brown); opacity:.75; line-height:1.6; }
+.feed-name { font-size:.76rem; color:var(--clay); font-weight:700; margin-top:6px; }
+.empty-msg { text-align:center; opacity:.35; padding:40px 0; font-size:.88rem; }
+
+/* Live dot */
+.live-dot {
+  display:inline-block; width:7px; height:7px;
+  background:var(--leaf-light); border-radius:50%;
+  margin-right:5px;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(1.5)}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:400px) {
+  .stats-grid { grid-template-columns:repeat(3,1fr); }
+  .hero h1 { font-size:1.8rem; }
+  .star { font-size:2.2rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- DIYA STRIP -->
+<div class="diya-strip">🪔 🍛 🪔 🍛 🪔 🍛 🪔</div>
+
+<!-- HERO -->
 <div class="hero">
-  <span class="logo-icon">🍽️</span>
-  <h1>Negi Bhojnalaya</h1>
-  <p>Kashmira Negi · Hapur, UP</p>
-  <span class="upi-badge">UPI: 7466001885@ptyes</span>
+  <span class="thali-icon">🍽️</span>
+  <h1>नेगी भोजनालय</h1>
+  <div class="hero-sub">Kashmira Negi · Hapur, Uttar Pradesh</div>
+  <div class="upi-pill">💳 UPI: 7466001885@ptyes</div>
 </div>
+
+<div class="divider"><span>❋</span></div>
 
 <!-- TABS -->
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('feedback')">✍️ Feedback Do</button>
+  <button class="tab active" onclick="switchTab('feedback')">✍️ Feedback Dijiye</button>
   <button class="tab" onclick="switchTab('dashboard')"><span class="live-dot"></span>Live Dashboard</button>
 </div>
 
-<!-- ══════════ FEEDBACK PANEL ══════════ -->
+<!-- ══════ FEEDBACK PANEL ══════ -->
 <div id="panel-feedback" class="panel active">
 <div class="form-wrap">
 
-  <div class="section-title">Khana kaisa laga? 🙏</div>
-
-  <!-- STAR RATING -->
-  <div class="rating-block">
-    <div class="stars" id="stars">
-      <span class="star" data-v="1" onclick="setRating(1)">⭐</span>
-      <span class="star" data-v="2" onclick="setRating(2)">⭐</span>
-      <span class="star" data-v="3" onclick="setRating(3)">⭐</span>
-      <span class="star" data-v="4" onclick="setRating(4)">⭐</span>
-      <span class="star" data-v="5" onclick="setRating(5)">⭐</span>
+  <!-- ALREADY SUBMITTED STATE -->
+  <div id="alreadyDone" class="card" style="display:none;">
+    <div class="already-done">
+      <span class="big-icon">🙏</span>
+      <h3>Shukriya, Dil Se!</h3>
+      <p>Aapka feedback hume mil gaya hai.<br>Aapki rai se humari thali aur bhi behtar banegi.<br><br>Dobara padharo, khana hazir rahega! 😊</p>
     </div>
-    <div class="rating-label" id="ratingLabel">Koi ek star select karo</div>
   </div>
 
-  <!-- DESCRIPTION -->
-  <div class="field">
-    <label>खाने के बारे में कुछ कहना चाहोगे? कैसा लगा?</label>
-    <textarea id="description" placeholder="Jaise: Dal bahut acchi thi, roti thodi sakht thi..."></textarea>
-  </div>
+  <!-- FEEDBACK FORM -->
+  <div id="feedbackForm">
 
-  <!-- NAME -->
-  <div class="field">
-    <label>नेगी भोजनालय</label>
-    <input type="text" id="custName" placeholder="Jaise: Rahul, Priya...">
-  </div>
+    <!-- RATING CARD -->
+    <div class="card">
+      <div class="card-title">Khana Kaisa Laga? 🙏</div>
+      <div class="card-sub">Apna honest feedback dijiye</div>
 
-  <button class="btn-submit" id="submitBtn" onclick="submitFeedback()">
-    प्रतिक्रिया भेजें 🚀
-  </button>
+      <div class="stars" id="stars">
+        <span class="star" data-v="1" onclick="setRating(1)">⭐</span>
+        <span class="star" data-v="2" onclick="setRating(2)">⭐</span>
+        <span class="star" data-v="3" onclick="setRating(3)">⭐</span>
+        <span class="star" data-v="4" onclick="setRating(4)">⭐</span>
+        <span class="star" data-v="5" onclick="setRating(5)">⭐</span>
+      </div>
+      <div class="rating-label" id="ratingLabel">Koi ek star chuno</div>
+    </div>
+
+    <!-- DETAILS CARD -->
+    <div class="card">
+      <div class="card-title">Kuch Aur Batao 📝</div>
+      <div class="card-sub" style="margin-bottom:14px;">Kis cheez ka feedback hai?</div>
+
+      <div class="chips" id="chips">
+        <span class="chip" onclick="toggleChip(this)">🍛 Dal</span>
+        <span class="chip" onclick="toggleChip(this)">🫓 Roti</span>
+        <span class="chip" onclick="toggleChip(this)">🍚 Chawal</span>
+        <span class="chip" onclick="toggleChip(this)">🥗 Sabzi</span>
+        <span class="chip" onclick="toggleChip(this)">🍜 Soup</span>
+        <span class="chip" onclick="toggleChip(this)">🍮 Mithai</span>
+        <span class="chip" onclick="toggleChip(this)">💰 Daam</span>
+        <span class="chip" onclick="toggleChip(this)">🙂 Service</span>
+        <span class="chip" onclick="toggleChip(this)">✨ Saafai</span>
+      </div>
+
+      <div class="field" style="margin-top:16px;">
+        <label>Apni baat likhiye</label>
+        <textarea id="description" placeholder="Jaise: Dal mast thi, roti thodi sakht thi..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Aapka Naam (Optional)</label>
+        <input type="text" id="custName" placeholder="Jaise: Rahul, Priya...">
+      </div>
+    </div>
+
+    <button class="btn-submit" id="submitBtn" onclick="submitFeedback()">
+      प्रतिक्रिया भेजें 🚀
+    </button>
+
+  </div><!-- /feedbackForm -->
 </div>
 </div>
 
-<!-- ══════════ DASHBOARD PANEL ══════════ -->
+<!-- ══════ DASHBOARD PANEL ══════ -->
 <div id="panel-dashboard" class="panel">
 <div class="dash-wrap">
 
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-    <div class="section-title" style="margin-bottom:0"><span class="live-dot"></span>Real-Time Feedback</div>
+  <div class="section-title-2">
+    <span><span class="live-dot"></span>Real-Time Feedback</span>
     <button class="refresh-btn" onclick="loadDashboard()">↻ Refresh</button>
   </div>
 
-  <!-- STATS -->
   <div class="stats-grid">
     <div class="stat-card">
       <div class="num" id="totalCount">0</div>
-      <div class="lbl">Total Feedback</div>
+      <div class="lbl">Total</div>
     </div>
     <div class="stat-card">
       <div class="num" id="avgRating">0.0</div>
-      <div class="lbl">Avg Rating</div>
+      <div class="lbl">Avg ⭐</div>
     </div>
     <div class="stat-card">
       <div class="num" id="fiveStars">0</div>
-      <div class="lbl">5 ⭐ Reviews</div>
+      <div class="lbl">5 Star</div>
     </div>
   </div>
 
-  <!-- BAR CHART -->
   <div class="bar-section">
     <div class="section-title">Rating Breakdown</div>
     <div id="barChart"></div>
   </div>
 
-  <!-- LIVE FEED -->
-  <div class="section-title">Latest Feedback</div>
+  <div class="section-title-2" style="margin-bottom:14px;">
+    <span>Latest Feedback</span>
+  </div>
   <div class="feed-list" id="feedList">
-    <div class="empty-msg">अभी कोई फीडबैक नहीं है।</div>
+    <div class="empty-msg">Abhi koi feedback nahi hai 🍽️</div>
   </div>
 
 </div>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">✅ शुक्रिया! आपका फीडबैक मिल गया। 🙏</div>
+<div class="toast" id="toast">✅ Shukriya! Aapka feedback mil gaya 🙏</div>
 
 <script>
-// ═══════════════════════════════════════════════════
-// CONFIG — apna backend URL yahan dalo
-// ═══════════════════════════════════════════════════
 const API_BASE = 'https://negiji-backend.onrender.com';
+const FEEDBACK_KEY = 'negi_feedback_submitted';
+const LOCAL_KEY    = 'negi_feedback';
 
 let selectedRating = 0;
+let selectedChips  = [];
 
-const labels = ['', 'Bahut Bura 😞','Theek Nahi 😕','Theek Hai 😐','Accha Tha 😊','Bahut Badhiya! 🤩'];
+const labels = ['','Bilkul Pasand Nahi 😞','Theek Nahi Tha 😕','Theek Tha 😐','Accha Tha 😊','Bahut Badhiya! 🤩'];
 
-// ─── Star Rating Logic ───────────────────────────
+/* ── CHECK IF ALREADY SUBMITTED ── */
+function checkSubmitted() {
+  if (localStorage.getItem(FEEDBACK_KEY)) {
+    document.getElementById('feedbackForm').style.display = 'none';
+    document.getElementById('alreadyDone').style.display = 'block';
+  }
+}
+checkSubmitted();
+
+/* ── STAR RATING ── */
 function setRating(v) {
   selectedRating = v;
   document.querySelectorAll('.star').forEach((s,i)=>{
@@ -341,19 +588,36 @@ function setRating(v) {
   document.getElementById('ratingLabel').textContent = labels[v];
 }
 
-// ─── Submit Feedback ─────────────────────────────
+/* ── CHIP TOGGLE ── */
+function toggleChip(el) {
+  el.classList.toggle('active');
+  const txt = el.textContent.trim().replace(/^[^\s]+\s/,'');
+  if (el.classList.contains('active')) {
+    selectedChips.push(txt);
+  } else {
+    selectedChips = selectedChips.filter(c=>c!==txt);
+  }
+}
+
+/* ── SUBMIT ── */
 async function submitFeedback() {
-  if (!selectedRating) {
-    alert('Pehle rating do! ⭐');
+  if (!selectedRating) { alert('Pehle rating do! ⭐'); return; }
+
+  /* Double-submit guard */
+  if (localStorage.getItem(FEEDBACK_KEY)) {
+    showAlreadyDone();
     return;
   }
+
   const btn = document.getElementById('submitBtn');
-  btn.disabled = true; btn.textContent = 'Bhej raha hai...';
+  btn.disabled = true; btn.textContent = 'Bhej raha hai... 🙏';
 
   const payload = {
-    rating: selectedRating,
-    description: document.getElementById('description').value.trim(),
-    customer_name: document.getElementById('custName').value.trim()
+    rating:        selectedRating,
+    description:   document.getElementById('description').value.trim(),
+    customer_name: document.getElementById('custName').value.trim(),
+    chips:         selectedChips,
+    created_at:    new Date().toISOString()
   };
 
   try {
@@ -363,26 +627,22 @@ async function submitFeedback() {
       body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error();
-    showToast();
-    resetForm();
   } catch(e) {
-    // LOCAL FALLBACK — saves to localStorage for demo
-    const all = JSON.parse(localStorage.getItem('negi_feedback')||'[]');
-    all.unshift({...payload, id: Date.now(), created_at: new Date().toISOString()});
-    localStorage.setItem('negi_feedback', JSON.stringify(all));
-    showToast();
-    resetForm();
+    /* Offline fallback — save locally */
+    const all = JSON.parse(localStorage.getItem(LOCAL_KEY)||'[]');
+    all.unshift({...payload, id: Date.now()});
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(all));
   }
+
+  /* Mark as submitted — one-time lock */
+  localStorage.setItem(FEEDBACK_KEY, '1');
+  showToast();
+  setTimeout(showAlreadyDone, 1200);
 }
 
-function resetForm() {
-  selectedRating = 0;
-  document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'));
-  document.getElementById('ratingLabel').textContent = 'Koi ek star select karo';
-  document.getElementById('description').value = '';
-  document.getElementById('custName').value = '';
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = false; btn.textContent = 'Feedback Bhejo 🚀';
+function showAlreadyDone() {
+  document.getElementById('feedbackForm').style.display = 'none';
+  document.getElementById('alreadyDone').style.display = 'block';
 }
 
 function showToast() {
@@ -391,51 +651,48 @@ function showToast() {
   setTimeout(()=> t.classList.remove('show'), 3500);
 }
 
-// ─── Dashboard Logic ──────────────────────────────
+/* ── DASHBOARD ── */
 async function loadDashboard() {
   let data = [];
-
   try {
     const res = await fetch(`${API_BASE}/api/feedback`);
     data = await res.json();
   } catch(e) {
-    // fallback: read from localStorage
-    data = JSON.parse(localStorage.getItem('negi_feedback')||'[]');
+    data = JSON.parse(localStorage.getItem(LOCAL_KEY)||'[]');
   }
 
-  if (!data.length) {
+  if (!Array.isArray(data)) data = [];
+
+  const total = data.length;
+  if (!total) {
     document.getElementById('totalCount').textContent = '0';
-    document.getElementById('avgRating').textContent = '0.0';
-    document.getElementById('fiveStars').textContent = '0';
+    document.getElementById('avgRating').textContent  = '–';
+    document.getElementById('fiveStars').textContent  = '0';
     document.getElementById('barChart').innerHTML = '';
-    document.getElementById('feedList').innerHTML = '<div class="empty-msg">Abhi koi feedback nahi hai</div>';
+    document.getElementById('feedList').innerHTML = '<div class="empty-msg">Abhi koi feedback nahi hai 🍽️</div>';
     return;
   }
 
-  // Stats
-  const total = data.length;
-  const avg = (data.reduce((s,d)=>s+d.rating,0)/total).toFixed(1);
+  const avg  = (data.reduce((s,d)=>s+d.rating,0)/total).toFixed(1);
   const five = data.filter(d=>d.rating===5).length;
 
   document.getElementById('totalCount').textContent = total;
-  document.getElementById('avgRating').textContent = avg;
-  document.getElementById('fiveStars').textContent = five;
+  document.getElementById('avgRating').textContent  = avg;
+  document.getElementById('fiveStars').textContent  = five;
 
-  // Bar Chart
   const counts = [0,0,0,0,0,0];
   data.forEach(d=> counts[d.rating]++);
   let bars = '';
   for(let i=5;i>=1;i--) {
-    const pct = total ? Math.round(counts[i]/total*100) : 0;
+    const pct = Math.round(counts[i]/total*100);
     bars += `<div class="bar-row">
-      <div class="star-lbl">${'⭐'.repeat(i)}</div>
+      <div class="bar-lbl">${'⭐'.repeat(i)}</div>
       <div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div>
       <div class="bar-count">${counts[i]}</div>
     </div>`;
   }
   document.getElementById('barChart').innerHTML = bars;
 
-  // Feed List
   const recent = data.slice(0,20);
   document.getElementById('feedList').innerHTML = recent.map(d=>`
     <div class="feed-item">
@@ -443,6 +700,7 @@ async function loadDashboard() {
         <span class="feed-stars">${'⭐'.repeat(d.rating)}</span>
         <span class="feed-time">${formatTime(d.created_at)}</span>
       </div>
+      ${d.chips && d.chips.length ? `<div class="feed-chip">${d.chips.join(' · ')}</div>` : ''}
       ${d.description ? `<div class="feed-desc">"${d.description}"</div>` : ''}
       ${d.customer_name ? `<div class="feed-name">— ${d.customer_name}</div>` : ''}
     </div>
@@ -451,21 +709,22 @@ async function loadDashboard() {
 
 function formatTime(iso) {
   if(!iso) return '';
-  const d = new Date(iso);
-  return d.toLocaleString('hi-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+  try {
+    return new Date(iso).toLocaleString('hi-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+  } catch(e) { return ''; }
 }
 
-// ─── Tab switching ────────────────────────────────
+/* ── TAB SWITCH ── */
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach((t,i)=>{
-    t.classList.toggle('active', (i===0&&name==='feedback')||(i===1&&name==='dashboard'));
+    t.classList.toggle('active',(i===0&&name==='feedback')||(i===1&&name==='dashboard'));
   });
-  document.querySelectorAll('.panel').forEach(p=> p.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
   if(name==='dashboard') loadDashboard();
 }
 
-// ─── Auto-refresh dashboard every 30s ────────────
+/* ── AUTO-REFRESH DASHBOARD ── */
 setInterval(()=>{
   if(document.getElementById('panel-dashboard').classList.contains('active')) loadDashboard();
 }, 30000);
