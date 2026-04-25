@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negi Bhojnalaya – Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B1A;
+    --deep: #1A0A00;
+    --cream: #FFF8F0;
+    --gold: #F5A623;
+    --green: #2ECC71;
+    --red: #E74C3C;
+    --card: rgba(255,255,255,0.07);
+    --border: rgba(255,107,26,0.25);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--deep);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND TEXTURE ── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(255,107,26,.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 90%, rgba(245,166,35,.12) 0%, transparent 60%);
+    pointer-events:none; z-index:0;
+  }
+
+  /* ─────────────────────────────── HERO HEADER */
+  .hero {
+    position:relative; z-index:1;
+    text-align:center;
+    padding: 48px 24px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo-icon { font-size:3.5rem; display:block; margin-bottom:8px; }
+  .hero h1 {
+    font-family:'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight:900;
+    background: linear-gradient(135deg, var(--gold), var(--saffron));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height:1.1;
+  }
+  .hero p { margin-top:6px; font-size:.9rem; opacity:.6; letter-spacing:.06em; }
+  .upi-badge {
+    display:inline-block; margin-top:14px;
+    padding:6px 18px; border-radius:50px;
+    background: rgba(255,107,26,.15);
+    border: 1px solid var(--border);
+    font-size:.78rem; opacity:.8;
+  }
+
+  /* ─────────────────────────────── TABS */
+  .tabs {
+    position:relative; z-index:1;
+    display:flex; justify-content:center; gap:8px;
+    padding:20px 24px 0;
+  }
+  .tab {
+    padding:10px 28px; border-radius:50px;
+    border:1px solid var(--border);
+    background:transparent; color:var(--cream);
+    font-family:'Poppins',sans-serif; font-size:.85rem; cursor:pointer;
+    transition: all .3s;
+  }
+  .tab.active {
+    background: linear-gradient(135deg, var(--saffron), var(--gold));
+    border-color:transparent; color:#fff; font-weight:600;
+    box-shadow: 0 4px 20px rgba(255,107,26,.4);
+  }
+
+  /* ─────────────────────────────── PANELS */
+  .panel { display:none; }
+  .panel.active { display:block; }
+
+  /* ─────────────────────────────── FEEDBACK FORM */
+  .form-wrap {
+    position:relative; z-index:1;
+    max-width:520px; margin:0 auto;
+    padding:32px 24px 60px;
+  }
+
+  .section-title {
+    font-size:.72rem; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--gold); opacity:.8; margin-bottom:20px;
+  }
+
+  /* Star Rating */
+  .rating-block { margin-bottom:32px; }
+  .stars {
+    display:flex; gap:10px; justify-content:center;
+    margin-top:16px;
+  }
+  .star {
+    font-size:3rem; cursor:pointer;
+    filter: grayscale(1) brightness(.5);
+    transition: all .2s; user-select:none;
+  }
+  .star.lit { filter:none; transform:scale(1.15); }
+  .star:hover { filter:none; transform:scale(1.2); }
+
+  .rating-label {
+    text-align:center; margin-top:12px;
+    font-size:.9rem; font-weight:600; color:var(--gold);
+    min-height:1.4em;
+  }
+
+  /* Text fields */
+  .field { margin-bottom:20px; }
+  .field label { display:block; font-size:.78rem; opacity:.6; margin-bottom:8px; }
+  .field textarea, .field input {
+    width:100%; padding:14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius:12px; color:var(--cream);
+    font-family:'Poppins',sans-serif; font-size:.9rem;
+    outline:none; resize:none;
+    transition: border-color .3s;
+  }
+  .field textarea:focus, .field input:focus {
+    border-color: var(--saffron);
+    box-shadow: 0 0 0 3px rgba(255,107,26,.15);
+  }
+  .field textarea { height:100px; }
+
+  /* Submit button */
+  .btn-submit {
+    width:100%; padding:16px;
+    border:none; border-radius:14px; cursor:pointer;
+    font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700;
+    background: linear-gradient(135deg, var(--saffron), var(--gold));
+    color:#fff; letter-spacing:.04em;
+    box-shadow: 0 8px 30px rgba(255,107,26,.45);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-submit:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(255,107,26,.55); }
+  .btn-submit:active { transform:translateY(0); }
+  .btn-submit:disabled { opacity:.5; cursor:not-allowed; }
+
+  /* Toast */
+  .toast {
+    position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(100px);
+    padding:14px 28px; border-radius:50px;
+    background:var(--green); color:#fff; font-size:.88rem; font-weight:600;
+    box-shadow:0 8px 30px rgba(0,0,0,.4); z-index:999;
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    white-space:nowrap;
+  }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+
+  /* ─────────────────────────────── DASHBOARD */
+  .dash-wrap {
+    position:relative; z-index:1;
+    max-width:700px; margin:0 auto;
+    padding:32px 24px 60px;
+  }
+
+  .stats-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:16px; margin-bottom:32px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius:16px; padding:20px 16px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+  }
+  .stat-card .num {
+    font-family:'Playfair Display',serif;
+    font-size:2.2rem; font-weight:900;
+    background:linear-gradient(135deg,var(--gold),var(--saffron));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .stat-card .lbl { font-size:.72rem; opacity:.5; margin-top:4px; letter-spacing:.05em; text-transform:uppercase; }
+
+  /* Bar chart */
+  .bar-section { margin-bottom:32px; }
+  .bar-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .bar-row .star-lbl { font-size:.85rem; width:60px; }
+  .bar-bg { flex:1; height:12px; background:rgba(255,255,255,.08); border-radius:6px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,var(--saffron),var(--gold)); transition:width 1s ease; }
+  .bar-count { font-size:.78rem; opacity:.5; width:24px; text-align:right; }
+
+  /* Feed list */
+  .feed-list { display:flex; flex-direction:column; gap:14px; }
+  .feed-item {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:16px;
+    animation: fadeIn .5s ease;
+  }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  .feed-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+  .feed-stars { font-size:1rem; }
+  .feed-time { font-size:.72rem; opacity:.4; }
+  .feed-desc { font-size:.84rem; opacity:.75; line-height:1.5; }
+  .feed-name { font-size:.78rem; opacity:.45; margin-top:6px; }
+
+  .empty-msg { text-align:center; opacity:.35; padding:40px 0; font-size:.9rem; }
+
+  .live-dot {
+    display:inline-block; width:8px; height:8px;
+    background:var(--green); border-radius:50%;
+    margin-right:6px;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+  .refresh-btn {
+    float:right; background:none; border:1px solid var(--border);
+    color:var(--cream); border-radius:8px; padding:6px 14px;
+    font-size:.75rem; cursor:pointer; opacity:.6;
+    transition:opacity .2s;
+  }
+  .refresh-btn:hover { opacity:1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hero">
+  <span class="logo-icon">🍽️</span>
+  <h1>Negi Bhojnalaya</h1>
+  <p>Kashmira Negi · Hapur, UP</p>
+  <span class="upi-badge">UPI: 7466001885@ptyes</span>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('feedback')">✍️ Feedback Do</button>
+  <button class="tab" onclick="switchTab('dashboard')"><span class="live-dot"></span>Live Dashboard</button>
+</div>
+
+<!-- ══════════ FEEDBACK PANEL ══════════ -->
+<div id="panel-feedback" class="panel active">
+<div class="form-wrap">
+
+  <div class="section-title">Khana kaisa laga? 🙏</div>
+
+  <!-- STAR RATING -->
+  <div class="rating-block">
+    <div class="stars" id="stars">
+      <span class="star" data-v="1" onclick="setRating(1)">⭐</span>
+      <span class="star" data-v="2" onclick="setRating(2)">⭐</span>
+      <span class="star" data-v="3" onclick="setRating(3)">⭐</span>
+      <span class="star" data-v="4" onclick="setRating(4)">⭐</span>
+      <span class="star" data-v="5" onclick="setRating(5)">⭐</span>
+    </div>
+    <div class="rating-label" id="ratingLabel">Koi ek star select karo</div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="field">
+    <label>Kuch aur batana chahte ho? (Optional)</label>
+    <textarea id="description" placeholder="Jaise: Dal bahut acchi thi, roti thodi sakht thi..."></textarea>
+  </div>
+
+  <!-- NAME -->
+  <div class="field">
+    <label>Aapka naam (Optional)</label>
+    <input type="text" id="custName" placeholder="Jaise: Rahul, Priya...">
+  </div>
+
+  <button class="btn-submit" id="submitBtn" onclick="submitFeedback()">
+    Feedback Bhejo 🚀
+  </button>
+</div>
+</div>
+
+<!-- ══════════ DASHBOARD PANEL ══════════ -->
+<div id="panel-dashboard" class="panel">
+<div class="dash-wrap">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+    <div class="section-title" style="margin-bottom:0"><span class="live-dot"></span>Real-Time Feedback</div>
+    <button class="refresh-btn" onclick="loadDashboard()">↻ Refresh</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="num" id="totalCount">0</div>
+      <div class="lbl">Total Feedback</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="avgRating">0.0</div>
+      <div class="lbl">Avg Rating</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="fiveStars">0</div>
+      <div class="lbl">5 ⭐ Reviews</div>
+    </div>
+  </div>
+
+  <!-- BAR CHART -->
+  <div class="bar-section">
+    <div class="section-title">Rating Breakdown</div>
+    <div id="barChart"></div>
+  </div>
+
+  <!-- LIVE FEED -->
+  <div class="section-title">Latest Feedback</div>
+  <div class="feed-list" id="feedList">
+    <div class="empty-msg">Abhi koi feedback nahi hai</div>
+  </div>
+
+</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Shukriya! Aapka feedback mil gaya 🙏</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// CONFIG — apna backend URL yahan dalo
+// ═══════════════════════════════════════════════════
+const API_BASE = 'https://your-backend.onrender.com'; // <-- CHANGE THIS
+
+let selectedRating = 0;
+
+const labels = ['', 'Bahut Bura 😞','Theek Nahi 😕','Theek Hai 😐','Accha Tha 😊','Bahut Badhiya! 🤩'];
+
+// ─── Star Rating Logic ───────────────────────────
+function setRating(v) {
+  selectedRating = v;
+  document.querySelectorAll('.star').forEach((s,i)=>{
+    s.classList.toggle('lit', i < v);
+  });
+  document.getElementById('ratingLabel').textContent = labels[v];
+}
+
+// ─── Submit Feedback ─────────────────────────────
+async function submitFeedback() {
+  if (!selectedRating) {
+    alert('Pehle rating do! ⭐');
+    return;
+  }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = 'Bhej raha hai...';
+
+  const payload = {
+    rating: selectedRating,
+    description: document.getElementById('description').value.trim(),
+    customer_name: document.getElementById('custName').value.trim()
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/api/feedback`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error();
+    showToast();
+    resetForm();
+  } catch(e) {
+    // LOCAL FALLBACK — saves to localStorage for demo
+    const all = JSON.parse(localStorage.getItem('negi_feedback')||'[]');
+    all.unshift({...payload, id: Date.now(), created_at: new Date().toISOString()});
+    localStorage.setItem('negi_feedback', JSON.stringify(all));
+    showToast();
+    resetForm();
+  }
+}
+
+function resetForm() {
+  selectedRating = 0;
+  document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'));
+  document.getElementById('ratingLabel').textContent = 'Koi ek star select karo';
+  document.getElementById('description').value = '';
+  document.getElementById('custName').value = '';
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false; btn.textContent = 'Feedback Bhejo 🚀';
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=> t.classList.remove('show'), 3500);
+}
+
+// ─── Dashboard Logic ──────────────────────────────
+async function loadDashboard() {
+  let data = [];
+
+  try {
+    const res = await fetch(`${API_BASE}/api/feedback`);
+    data = await res.json();
+  } catch(e) {
+    // fallback: read from localStorage
+    data = JSON.parse(localStorage.getItem('negi_feedback')||'[]');
+  }
+
+  if (!data.length) {
+    document.getElementById('totalCount').textContent = '0';
+    document.getElementById('avgRating').textContent = '0.0';
+    document.getElementById('fiveStars').textContent = '0';
+    document.getElementById('barChart').innerHTML = '';
+    document.getElementById('feedList').innerHTML = '<div class="empty-msg">Abhi koi feedback nahi hai</div>';
+    return;
+  }
+
+  // Stats
+  const total = data.length;
+  const avg = (data.reduce((s,d)=>s+d.rating,0)/total).toFixed(1);
+  const five = data.filter(d=>d.rating===5).length;
+
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('avgRating').textContent = avg;
+  document.getElementById('fiveStars').textContent = five;
+
+  // Bar Chart
+  const counts = [0,0,0,0,0,0];
+  data.forEach(d=> counts[d.rating]++);
+  let bars = '';
+  for(let i=5;i>=1;i--) {
+    const pct = total ? Math.round(counts[i]/total*100) : 0;
+    bars += `<div class="bar-row">
+      <div class="star-lbl">${'⭐'.repeat(i)}</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div>
+      <div class="bar-count">${counts[i]}</div>
+    </div>`;
+  }
+  document.getElementById('barChart').innerHTML = bars;
+
+  // Feed List
+  const recent = data.slice(0,20);
+  document.getElementById('feedList').innerHTML = recent.map(d=>`
+    <div class="feed-item">
+      <div class="feed-header">
+        <span class="feed-stars">${'⭐'.repeat(d.rating)}</span>
+        <span class="feed-time">${formatTime(d.created_at)}</span>
+      </div>
+      ${d.description ? `<div class="feed-desc">"${d.description}"</div>` : ''}
+      ${d.customer_name ? `<div class="feed-name">— ${d.customer_name}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+function formatTime(iso) {
+  if(!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleString('hi-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+}
+
+// ─── Tab switching ────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('active', (i===0&&name==='feedback')||(i===1&&name==='dashboard'));
+  });
+  document.querySelectorAll('.panel').forEach(p=> p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  if(name==='dashboard') loadDashboard();
+}
+
+// ─── Auto-refresh dashboard every 30s ────────────
+setInterval(()=>{
+  if(document.getElementById('panel-dashboard').classList.contains('active')) loadDashboard();
+}, 30000);
+</script>
+</body>
+</html>
